@@ -1,5 +1,11 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true
+    "outDir": "./dist/",
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "target": "es5",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "preserveConstEnums": true
   }
 }
