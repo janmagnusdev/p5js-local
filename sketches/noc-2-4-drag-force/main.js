@@ -6,12 +6,15 @@ const movers = [];
 function setup() {
   createCanvas(400, 400);
   for (let i = 0; i < 10; i++) {
-    movers[i] = new Mover(random(width), height - 100, random(1, 8));
+    movers[i] = new Mover(random(width), 100, random(1, 20));
   }
 }
 
 function draw() {
   background(0);
+  fill(255, 125);
+  noStroke();
+  rect(0, height / 2, width, height / 2);
 
   // forces
   for (let mover of movers) {
@@ -24,15 +27,16 @@ function draw() {
     let weight = p5.Vector.mult(gravity, mover.mass);
     mover.applyForce(weight);
 
-    mover.friction();
+    // mover.friction();
+    if (mover.pos.y > height / 2) {
+      mover.drag();
+    }
 
     // update show logic
     mover.update();
     mover.edges();
     mover.show();
   }
-
-  // TODO: Draw the various vectors from the position of the movers
 }
 
 // ----------------- P5JS hook-in -------------------

@@ -53,6 +53,19 @@ export class Mover {
     }
   }
 
+  drag() {
+    const dragC = 0.0001;
+
+    let drag = this.vel.copy();
+    drag.normalize();
+    drag.mult(-1);
+
+    let area = this.r ** 2 * PI;
+    let speed_sq = this.vel.mag() ** 2;
+    drag.setMag(dragC * area * speed_sq);
+    this.applyForce(drag);
+  }
+
   applyForce(force) {
     // newtons law: A = F / M
     const f = p5.Vector.div(force, this.mass);
